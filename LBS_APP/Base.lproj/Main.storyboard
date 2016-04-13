@@ -1,25 +1,161 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6211" systemVersion="14A298i" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9060" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="ec6-Cm-2YW">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6204"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9051"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Main View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModuleProvider="" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="MainViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
+                    <navigationItem key="navigationItem" id="BLK-Eh-NSv">
+                        <nil key="title"/>
+                        <barButtonItem key="leftBarButtonItem" image="iconfont-shimingrenzhengyirenzheng.png" id="dIh-iS-NYM">
+                            <connections>
+                                <action selector="personAction:" destination="BYZ-38-t0r" id="l4n-I9-uBv"/>
+                            </connections>
+                        </barButtonItem>
+                        <textField key="titleView" opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="🔍" textAlignment="natural" minimumFontSize="17" id="lNg-dk-0Td">
+                            <rect key="frame" x="143" y="7" width="128" height="30"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <textInputTraits key="textInputTraits"/>
+                        </textField>
+                        <barButtonItem key="rightBarButtonItem" image="iconfont-dingdan (1).png" id="1AZ-06-JcL">
+                            <connections>
+                                <action selector="TaskAction:" destination="BYZ-38-t0r" id="pYk-UG-FJH"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
+                    <connections>
+                        <outlet property="TaskAction" destination="1AZ-06-JcL" id="4JY-ii-gec"/>
+                        <outlet property="personBtn" destination="dIh-iS-NYM" id="oT8-hh-YW8"/>
+                        <outlet property="searchDisplayController" destination="fx5-An-eZl" id="3zG-nQ-fxN"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <panGestureRecognizer minimumNumberOfTouches="1" id="LWF-5o-S2e"/>
+                <searchDisplayController id="fx5-An-eZl">
+                    <connections>
+                        <outlet property="delegate" destination="BYZ-38-t0r" id="Cqx-9V-Yn1"/>
+                        <outlet property="searchContentsController" destination="BYZ-38-t0r" id="VGg-Jd-bGZ"/>
+                        <outlet property="searchResultsDataSource" destination="BYZ-38-t0r" id="iiz-cp-Eo8"/>
+                        <outlet property="searchResultsDelegate" destination="BYZ-38-t0r" id="H7Z-iF-NSa"/>
+                    </connections>
+                </searchDisplayController>
             </objects>
+            <point key="canvasLocation" x="225" y="223"/>
+        </scene>
+        <!--Tasks View Controller-->
+        <scene sceneID="IfL-NP-MFT">
+            <objects>
+                <viewController id="u68-Os-ktJ" customClass="TasksViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="VKu-wf-UFO"/>
+                        <viewControllerLayoutGuide type="bottom" id="2Kb-Kx-AMj"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="C13-Rv-cfX">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="KDi-k8-8qm" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="714" y="223"/>
+        </scene>
+        <!--Person Conter View Controller-->
+        <scene sceneID="FCZ-ee-wua">
+            <objects>
+                <viewController id="YKM-hT-JOa" customClass="PersonConterViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="siK-rz-meE"/>
+                        <viewControllerLayoutGuide type="bottom" id="Ths-Wj-XBv"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Cpq-IN-D10">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="iconfont-yonghuming.png" translatesAutoresizingMaskIntoConstraints="NO" id="MSe-cz-BIr">
+                                <rect key="frame" x="32" y="93" width="80" height="80"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="张三" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1h0-VJ-0QR">
+                                <rect key="frame" x="164" y="102" width="114" height="24"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="39d-Zq-fvW">
+                                <rect key="frame" x="129" y="565" width="142" height="33"/>
+                                <color key="backgroundColor" red="0.90588241815567017" green="0.39215689897537231" blue="0.28235295414924622" alpha="1" colorSpace="deviceRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <state key="normal" title="退出登录">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="186＊＊＊＊1234" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TEr-l4-sOG">
+                                <rect key="frame" x="164" y="143" width="160" height="24"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" restorationIdentifier="TableView1" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="okJ-P9-sJ3">
+                                <rect key="frame" x="55" y="251" width="305" height="209"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="YKM-hT-JOa" id="fhf-Ts-boQ"/>
+                                    <outlet property="delegate" destination="YKM-hT-JOa" id="W2k-J7-WRt"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
+                    <connections>
+                        <outlet property="PhoneNumber" destination="TEr-l4-sOG" id="egp-Rz-2sP"/>
+                        <outlet property="UserName" destination="1h0-VJ-0QR" id="7h7-mx-Iv6"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Meo-h3-WXs" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="103" y="1147"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="PbV-DM-AW0">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="ec6-Cm-2YW" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="ak1-aU-rud">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="fNq-8A-UNW"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="hCb-6R-H37" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-349" y="309"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="iconfont-dingdan (1).png" width="32" height="32"/>
+        <image name="iconfont-shimingrenzhengyirenzheng.png" width="32" height="32"/>
+        <image name="iconfont-yonghuming.png" width="32" height="32"/>
+    </resources>
 </document>

@@ -7,122 +7,213 @@
 //
 
 #import "TaskViewController.h"
-#import "TaskModel.h"
-//获取屏幕 宽度、高度
-#define SCREEN_FRAME ([UIScreen mainScreen].bounds)
-#define SCREEN_WIDTH ([UIScreen mainScreen].bounds.size.width)
-#define SCREEN_HEIGHT ([UIScreen mainScreen].bounds.size.height)
-@interface TaskViewController()
+#import "TaskDetailsViewController.h"
+@interface TaskViewController ()<sendRowValueDelegate>
 {
-    NSMutableArray *taskModelNumber;
+    NSString *plistPath;
+    NSArray *dataArray;
+    NSInteger row;
+    
 }
 @end
 
 @implementation TaskViewController
 
--(void)viewDidLoad
-{
+@synthesize taskData;
+
+- (void)viewDidLoad {
     [super viewDidLoad];
-    UITableView *tableView = [[UITableView alloc]initWithFrame:CGRectMake(30, 100, SCREEN_WIDTH-60, SCREEN_HEIGHT-200) style:UITableViewStyleGrouped];
+    // Do any additional setup after loading the view from its nib.
+    UITableView *tableView = [[UITableView alloc]initWithFrame:SCREEN_FRAME style:UITableViewStyleGrouped];
     tableView.delegate = self;
     tableView.dataSource = self;
-    self.view.backgroundColor=[UIColor whiteColor];
     tableView.backgroundColor = [UIColor clearColor];
-    //让你的tableView按照 上 ,左  ,下  ,右的方向 偏移
-    //让你的tableView按照 上 ,左  ,下  ,右的方向 偏移
-    tableView.contentInset=UIEdgeInsetsMake(-100, 0, 0, 0);
-    self.number =[NSArray arrayWithObjects:@"10001",@"10002",@"10003",@"10004",@"10005",nil];
-    self.distance = [NSArray arrayWithObjects:@"1KM",@"2KM",@"3KM",@"4KM",@"5KM",nil];
-    self.task = [NSArray arrayWithObjects:@"检查播放器1是否完好",@"检查播放器2是否完好",@"检查播放器3是否完好",@"检查播放器4是否完好",@"检查播放器5是否完好",@"检查播放器1是否完好",nil];
-    
+    self.view.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:tableView];
     
-    //TaskModel *taskModel = [[TaskModel alloc]init];
-    //taskModel.delegate = self;
+    //初始化TaskData
+    NSDictionary *dic1 = [[NSDictionary alloc]initWithObjectsAndKeys: @"10001",@"number",@"检查播放器1是否完好",@"task", @"1KM", @"distance",@"/Users/msi/Documents/2016/LBS_APP/LBS_APP/未选择.png",@"image0",@"/Users/msi/Documents/2016/LBS_APP/LBS_APP/已选择.png",@"image",@"YES",@"boolean",nil];
+    NSDictionary *dic2 = [[NSDictionary alloc]initWithObjectsAndKeys: @"10002",@"number",@"检查播放器2是否完好",@"task", @"2KM", @"distance",@"/Users/msi/Documents/2016/LBS_APP/LBS_APP/未选择.png",@"image0",@"/Users/msi/Documents/2016/LBS_APP/LBS_APP/已选择.png",@"image",@"YES",@"boolean",nil];
+    NSDictionary *dic3 = [[NSDictionary alloc]initWithObjectsAndKeys: @"10003",@"number",@"检查播放器3是否完好",@"task", @"3KM", @"distance",@"/Users/msi/Documents/2016/LBS_APP/LBS_APP/未选择.png",@"image0",@"/Users/msi/Documents/2016/LBS_APP/LBS_APP/已选择.png",@"image",@"YES",@"boolean",nil];
+    NSDictionary *dic4 = [[NSDictionary alloc]initWithObjectsAndKeys: @"10004",@"number",@"检查播放器4是否完好",@"task", @"4KM", @"distance",@"/Users/msi/Documents/2016/LBS_APP/LBS_APP/未选择.png",@"image0",@"/Users/msi/Documents/2016/LBS_APP/LBS_APP/已选择.png",@"image",@"YES",@"boolean",nil];
+    NSDictionary *dic5 = [[NSDictionary alloc]initWithObjectsAndKeys: @"10005",@"number",@"检查播放器5是否完好",@"task", @"5KM", @"distance",@"/Users/msi/Documents/2016/LBS_APP/LBS_APP/未选择.png",@"image0",@"/Users/msi/Documents/2016/LBS_APP/LBS_APP/已选择.png",@"image",@"NO",@"boolean",nil];
+    taskData = [[NSArray alloc]initWithObjects:dic1,dic2,dic3,dic4,dic5,nil];
     
+    //读取taskDetails.plist
+    plistPath = [[NSBundle mainBundle]pathForResource:@"taskDetails" ofType:@"plist"];
+    //dataArray = [[NSArray alloc]initWithContentsOfFile:plistPath];
+    NSDictionary *data = [NSDictionary dictionaryWithContentsOfFile:plistPath];
+    //NSLog(@"data is %@",data);
+    dataArray = [data objectForKey:@"10001"];
+    //NSLog(@"dataArray is %@",dataArray);
     
 }
 
-#pragma mark -- delegate TaskModel
--(void)initTaskModel{
-    
-//    TaskModel *task10001 = [[TaskModel alloc]init];
-//    task10001.number = @"10001";
-//    task10001.task =@"检查播放器1是否完好";
-//    task10001.distance = @"1KM";
-//    
-//    TaskModel *task10002 = [[TaskModel alloc]init];
-//    task10001.number = @"10001";
-//    task10001.task =@"检查播放器2是否完好";
-//    task10001.distance = @"2KM";
-//    
-//    TaskModel *task10003 = [[TaskModel alloc]init];
-//    task10001.number = @"10001";
-//    task10001.task =@"检查播放器3是否完好";
-//    task10001.distance = @"3KM";
-//    
-//    TaskModel *task10004 = [[TaskModel alloc]init];
-//    task10001.number = @"10001";
-//    task10001.task =@"检查播放器4是否完好";
-//    task10001.distance = @"5KM";
-//    
-//    TaskModel *task10005 = [[TaskModel alloc]init];
-//    task10001.number = @"10001";
-//    task10001.task =@"检查播放器5是否完好";
-//    task10001.distance = @"5KM";
-//    
-//    taskModelNumber = @[task10001,task10002,task10003,task10004,task10005];
+//每个分区的行数
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    //return section == 1?[taskData count]:2;
+    return [taskData count];
 }
 
-
-#pragma mark -- delegate cell
-
--(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
+//表的分区数
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
     return 1;
 }
--(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
-    return self.number.count;
-}
--(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    return (SCREEN_HEIGHT-200)*0.25;//section高度
-}
-- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section;
-{
-    return 0;//这个方法返回指定的 section的header view 的高度。
-}
--(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    //    声明静态字符串型对象，用来标记重用单元格
-    static NSString *cellIndentifier = @"cell";
-    //    用cellIdentifier表示需要重用的单元
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIndentifier];
-    //    如果如果没有多余单元，则需要创建新的单元
-    if (!cell) {
-        cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellIndentifier];
-    }
-    else {
-        while ([cell.contentView.subviews lastObject ]!=nil) {
-            [(UIView*)[cell.contentView.subviews lastObject]removeFromSuperview];
-        }
-    }
-    //UITableViewCell *cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:nil];
-    //TaskModel *taskModel = taskModelNumber[indexPath.section];
+
+//定义分区的标题
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section{
     
-    cell.textLabel.text = [self.number objectAtIndex:indexPath.row];
-    cell.detailTextLabel.text = [self.task objectAtIndex:indexPath.row];
-    //cell上的右箭头
-    cell.accessoryType =UITableViewCellAccessoryDisclosureIndicator;
-    cell.font = [UIFont boldSystemFontOfSize:20];
+    return @"任务列表";
+    
+}
+-(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
+    UIView *customView = [[UIView alloc]initWithFrame:CGRectMake(30, 0, 100, 30)];
+    UILabel *headerLabel = [[UILabel alloc]init];
+    headerLabel.backgroundColor = [UIColor clearColor];
+    headerLabel.textColor = [UIColor orangeColor];
+    headerLabel.font =[UIFont boldSystemFontOfSize:25];
+    headerLabel.highlightedTextColor = [UIColor redColor];
+    //headerLabel.opaque = NO;
+    headerLabel.text = @"任务列表";
+    headerLabel.frame = CGRectMake(30, 20, 100, 30);
+    [customView addSubview:headerLabel];
+    return customView;
+}
+//修改行高度的位置
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return 90;
+}
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    UITableViewCell *cell;
+    
+    cell = [self customCellWithOutXib:tableView withIndexPath:indexPath];
+    
     return cell;
 }
+#pragma mark -- sendRowValuedelegate
+-(void)rowValue:(NSInteger *)rowValue{
+    rowValue = &(row)+1;
+    NSLog(@"rowValue is %ld",(long)rowValue);
+}
 
+#pragma mark -- 页面跳转
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{   //跳转到storyboard页面
+    UIStoryboard *story = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
+    UIViewController *view= [story instantiateViewControllerWithIdentifier:@"TaskDetailsViewController"];
+    [self.navigationController pushViewController:view animated:YES];
+    
+    //rowValue是点击的哪行
+    row = [indexPath row];
+    NSLog(@"YOU CLICL %ld",row+1);
+
+}
+
+-(UITableViewCell *)customCellWithOutXib:(UITableView *)tableView withIndexPath:(NSIndexPath *)indexPath{
+    //定义标识符
+    static NSString *customCellIndentifier = @"CustomCellIndentifier";
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:customCellIndentifier];
+    
+    //定义新的cell
+    if(cell == nil){
+        //使用默认的UITableViewCell,但是不使用默认的image与text，改为添加自定义的控件
+        cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:customCellIndentifier];
+        //编号
+        CGRect numberRect = CGRectMake(88, 15, 100, 25);
+        UILabel *numberLabel = [[UILabel alloc]initWithFrame:numberRect];
+        numberLabel.font = [UIFont boldSystemFontOfSize:20];
+        numberLabel.tag = numberTag;//设置tag，以便后面的定位
+        numberLabel.textColor = [UIColor brownColor];
+        [cell.contentView addSubview:numberLabel];
+        
+        //任务
+        CGRect taskTipRect = CGRectMake(88, 40, 100, 20);
+        UILabel *taskTipLabel = [[UILabel alloc]initWithFrame:taskTipRect];
+        taskTipLabel.text = @"任务:";
+        taskTipLabel.font = [UIFont boldSystemFontOfSize:18];
+        [cell.contentView addSubview:taskTipLabel];
+        
+        
+        CGRect taskRect = CGRectMake(188, 40, 200, 20);
+        UILabel *taskLabel = [[UILabel alloc]initWithFrame:taskRect];
+        taskLabel.tag = taskTag;
+        taskLabel.font = [UIFont boldSystemFontOfSize:18];
+        [cell.contentView addSubview:taskLabel];
+        
+        //距离
+        CGRect distanceTipRect = CGRectMake(88, 60, 100, 20);
+        UILabel *distanceTipLabel = [[UILabel alloc]initWithFrame:distanceTipRect];
+        distanceTipLabel.text = @"距离:";
+        distanceTipLabel.font = [UIFont boldSystemFontOfSize:18];
+        [cell.contentView addSubview:distanceTipLabel];
+        
+        CGRect distanceRect = CGRectMake(188, 60, 200, 20);
+        UILabel *distanceLabel = [[UILabel alloc]initWithFrame:distanceRect];
+        distanceLabel.tag = distanceTag;
+        distanceLabel.font = [UIFont boldSystemFontOfSize:18];
+        [cell.contentView addSubview:distanceLabel];
+        
+        //chexkBox
+        CGRect imageRect = CGRectMake(30, 30, 30, 30);
+        UIImageView *imageView= [[UIImageView alloc]initWithFrame:imageRect];
+        imageView.tag = imageTag;
+        //为图片添加边框
+        CALayer *layer = [imageView layer];
+        layer.cornerRadius = 8;//角弧度
+        //layer.borderColor = [[UIColor whiteColor]CGColor];
+        layer.masksToBounds=YES;//图片填充
+        [cell.contentView addSubview:imageView];
+    }
+    
+    //获得行数
+    NSUInteger row = [indexPath row];
+    
+    //取得相应行数的数据（NSDictionary类型，包括姓名、班级、学号、图片名称）
+    NSDictionary *dic = [taskData objectAtIndex:row];
+    
+    
+    //设置number
+    UILabel *number = (UILabel *)[cell.contentView viewWithTag:numberTag];
+    number.text = [dic objectForKey:@"number"];
+    
+    //设置task
+    UILabel *task = (UILabel *)[cell.contentView viewWithTag:taskTag];
+    task.text = [dic objectForKey:@"task"];
+    
+    //设置distance
+    UILabel *distance = (UILabel *)[cell.contentView viewWithTag:distanceTag];
+    distance.text = [dic objectForKey:@"distance"];
+    
+    //设置图片
+    UIImageView *imageView = (UIImageView *)[cell.contentView viewWithTag:imageTag];
+    NSString *check = [[NSString alloc]init];
+    check = [dic objectForKey:@"boolean"];
+    if ([check isEqualToString:@"YES"]) {
+        imageView.image = [UIImage imageNamed:[dic objectForKey:@"image0"]];
+    }else{
+        imageView.image = [UIImage imageNamed:[dic objectForKey:@"image"]];
+    }
+    
+    
+    //设置右侧箭头
+    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    return cell;
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+/*
+ #pragma mark - Navigation
+ 
+ // In a storyboard-based application, you will often want to do a little preparation before navigation
+ - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+ // Get the new view controller using [segue destinationViewController].
+ // Pass the selected object to the new view controller.
+ }
+ */
 
 @end

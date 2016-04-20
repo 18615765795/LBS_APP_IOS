@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>10001</key>
+	<array>
+		<integer>10001</integer>
+		<string>1KM</string>
+		<string>检查播放器1是否完好</string>
+		<string>未完成</string>
+		<string>1xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</string>
+	</array>
+    <key>10002</key>
+    <array>
+        <integer>10002</integer>
+        <string>2KM</string>
+        <string>检查播放器2是否完好</string>
+        <string>未完成</string>
+        <string>2xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</string>
+    </array>
+    <key>10003</key>
+    <array>
+        <integer>10003</integer>
+        <string>3KM</string>
+        <string>检查播放器1是否完好</string>
+        <string>未完成</string>
+        <string>3xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</string>
+    </array>
+    <key>10004</key>
+    <array>
+        <integer>10004</integer>
+        <string>4KM</string>
+        <string>检查播放器4是否完好</string>
+        <string>未完成</string>
+        <string>4xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</string>
+    </array>
+    <key>10005</key>
+    <array>
+        <integer>10005</integer>
+        <string>5KM</string>
+        <string>检查播放器5是否完好</string>
+        <string>已完成</string>
+        <string>5xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</string>
+    </array>
+</dict>
+</plist>

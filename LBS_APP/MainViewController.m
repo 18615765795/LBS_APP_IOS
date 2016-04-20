@@ -5,7 +5,7 @@
 //  Created by msi on 16/3/26.
 //  Copyright © 2016年 msi. All rights reserved.
 //
-#import "TasksViewController.h"
+#import "TaskViewController.h"
 #import "MainViewController.h"
 #import "PersonConterViewController.h"
 #import "TaskViewController.h"
@@ -368,7 +368,7 @@ UIImageView *buttonView;
 //处理位置坐标更新
 - (void)didUpdateBMKUserLocation:(BMKUserLocation *)userLocation
 {
-    NSLog(@"didUpdateUserLocation lat %f,long %f",userLocation.location.coordinate.latitude,userLocation.location.coordinate.longitude);
+    //NSLog(@"didUpdateUserLocation lat %f,long %f",userLocation.location.coordinate.latitude,userLocation.location.coordinate.longitude);
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -392,8 +392,8 @@ UIImageView *buttonView;
 
 //点击任务列表
 -(IBAction)TaskAction:(id)sender {
-    TasksViewController *tasksViewController = [[TasksViewController alloc]init];
-    [self.navigationController pushViewController:tasksViewController animated:YES];
+    TaskViewController *taskViewController = [[TaskViewController alloc]init];
+    [self.navigationController pushViewController:taskViewController animated:YES];
   
 }
 

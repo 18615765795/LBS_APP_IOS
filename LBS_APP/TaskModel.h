@@ -17,7 +17,7 @@
 @property(nonatomic,copy)NSArray *number;
 @property(nonatomic,copy)NSArray *task;
 @property(nonatomic,copy)NSArray *distance;
-
+@property(nonatomic,weak)NSString *rowValue;
 //+(id)TaskModelNumber:(NSArray *)number task:(NSArray *)task distance:(NSArray *)distance;
 
 //@property(nonatomic,retain)id<TaskModelDelegate>delegate;

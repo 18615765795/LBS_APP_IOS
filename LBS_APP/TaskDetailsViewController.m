@@ -9,17 +9,18 @@
 #import "TaskDetailsViewController.h"
 #import "TaskViewController.h"
 #import <QuartzCore/QuartzCore.h>
+#import "SingleRowValue.h"
 //获取屏幕 宽度、高度
 #define SCREEN_FRAME ([UIScreen mainScreen].bounds)
 #define SCREEN_WIDTH ([UIScreen mainScreen].bounds.size.width)
 #define SCREEN_HEIGHT ([UIScreen mainScreen].bounds.size.height)
 
-@interface TaskDetailsViewController ()<sendRowValueDelegate>
+@interface TaskDetailsViewController ()
 {
     //UIScrollView *scrollView;
-    NSString *plistPath;
-    NSArray *dataArray;
-    
+    NSString *_plistPath;
+    NSDictionary *_dataDictionary;
+    NSString *_rowValue;
 }
 @property (strong, nonatomic) IBOutlet UITextView *taskDetails;//任务详情
 @property (strong, nonatomic) IBOutlet UITextView *taskReport;//任务报告
@@ -30,7 +31,7 @@
 @property (strong, nonatomic) IBOutlet UIImageView *Camera;//相机图片
 
 
-@property (strong, nonatomic) IBOutlet UILabel *numberLabel;
+
 
 @end
 
@@ -40,19 +41,18 @@
     [super viewDidLoad];
     self.photoData = [NSArray arrayWithObjects:@"/Volumes/VMware Shared Folders/IOS Share/图片/scroll/1.jpg",@"/Volumes/VMware Shared Folders/IOS Share/图片/scroll/2.jpg",@"/Volumes/VMware Shared Folders/IOS Share/图片/scroll/3.jpg",@"/Volumes/VMware Shared Folders/IOS Share/图片/scroll/4.jpg",@"/Volumes/VMware Shared Folders/IOS Share/图片/scroll/5.jpg",nil];
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"ThinkChange" style:UIBarButtonItemStylePlain target:self action:@selector(navigationButton)];
-    //notificationcenter
-    //[[NSNotificationCenter defaultCenter]postNotificationName:@"clickCellNotification" object:self userInfo:@{@'name':self.value}];
     
+    //通知 －－ 提交报告
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(textChange) name:UITextViewTextDidChangeNotification object:self.taskReport];
     
-    //读取taskDetails.plist
-    plistPath = [[NSBundle mainBundle]pathForResource:@"taskDetails" ofType:@"plist"];
-    //dataArray = [[NSArray alloc]initWithContentsOfFile:plistPath];
-    NSDictionary *data = [NSDictionary dictionaryWithContentsOfFile:plistPath];
-    //NSLog(@"data is %@",data);
-    dataArray = [data objectForKey:@"10001"];
-    //NSLog(@"dataArray is %@",dataArray);
+    //单例传值－－cell编号
+    _rowValue =[SingleRowValue shareData].rowValue;
     
+    //读取taskDetails.plist
+    _plistPath = [[NSBundle mainBundle]pathForResource:@"taskDetails" ofType:@"plist"];
+    NSDictionary *data = [NSDictionary dictionaryWithContentsOfFile:_plistPath];
+    _dataDictionary = [data objectForKey:_rowValue];
+    NSLog(@"_dataArray data = %@",_dataDictionary);
     
     [self camera];
     [self textField];
@@ -108,10 +108,11 @@
 -(void)clickRightBarButton{
     
 }
-#pragma mark -- sendRowValueDelegate
 
 #pragma mark -- textfield
 -(void)textField{
+    
+    
     //背景阴影设置
     self.taskRpBG.layer.shadowOpacity = 0.4;
     self.taskDetailsBG.layer.shadowOpacity = 0.4;
@@ -124,8 +125,17 @@
     //self.taskDetails.layer.borderWidth = 1.0;
     [self.taskDetails setBackgroundColor:[UIColor colorWithRed:240.0/255.0 green:240.0/255.0 blue:240.0/255.0 alpha:1]];
     
-    //[self.delegate rowValue:self.numberLabel.text];
-    //[self dismissViewControllerAnimated:YES completion:nil];
+    //任务详情对应标签
+    self.numberLabel.text= _rowValue;
+    self.distanceLabel.text = [_dataDictionary objectForKey:@"distance"];
+    self.taskNameLabel.text = [_dataDictionary objectForKey:@"task"];
+    self.taskDetailsLabel.text = [_dataDictionary objectForKey:@"detail"];
+    NSString *check = [_dataDictionary objectForKey:@"boolean"];
+    if ([check isEqualToString:@"YES"]) {
+        self.taskStatusLabel.text = @"已完成";
+    }else{
+        self.taskStatusLabel.text = @"未完成";
+    }
     
     //任务报告
     //self.taskReport.text = @"请输入任务报告";

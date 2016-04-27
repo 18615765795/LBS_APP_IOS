@@ -8,18 +8,23 @@
 
 #import "TaskViewController.h"
 #import "TaskDetailsViewController.h"
-@interface TaskViewController ()<sendRowValueDelegate>
+#import "SingleRowValue.h"
+@interface TaskViewController ()
 {
-    NSString *plistPath;
-    NSArray *dataArray;
-    NSInteger row;
-    
+    NSString *_plistPath;
+    NSArray *_dataArray;
+    NSArray *_keyArray;
+    NSArray *_boolArray;
+    NSDictionary *_data;
+    NSInteger _row;
+    NSString *row1;
 }
+
 @end
 
 @implementation TaskViewController
 
-@synthesize taskData;
+//@synthesize taskData;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -31,28 +36,25 @@
     self.view.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:tableView];
     
-    //初始化TaskData
-    NSDictionary *dic1 = [[NSDictionary alloc]initWithObjectsAndKeys: @"10001",@"number",@"检查播放器1是否完好",@"task", @"1KM", @"distance",@"/Users/msi/Documents/2016/LBS_APP/LBS_APP/未选择.png",@"image0",@"/Users/msi/Documents/2016/LBS_APP/LBS_APP/已选择.png",@"image",@"YES",@"boolean",nil];
-    NSDictionary *dic2 = [[NSDictionary alloc]initWithObjectsAndKeys: @"10002",@"number",@"检查播放器2是否完好",@"task", @"2KM", @"distance",@"/Users/msi/Documents/2016/LBS_APP/LBS_APP/未选择.png",@"image0",@"/Users/msi/Documents/2016/LBS_APP/LBS_APP/已选择.png",@"image",@"YES",@"boolean",nil];
-    NSDictionary *dic3 = [[NSDictionary alloc]initWithObjectsAndKeys: @"10003",@"number",@"检查播放器3是否完好",@"task", @"3KM", @"distance",@"/Users/msi/Documents/2016/LBS_APP/LBS_APP/未选择.png",@"image0",@"/Users/msi/Documents/2016/LBS_APP/LBS_APP/已选择.png",@"image",@"YES",@"boolean",nil];
-    NSDictionary *dic4 = [[NSDictionary alloc]initWithObjectsAndKeys: @"10004",@"number",@"检查播放器4是否完好",@"task", @"4KM", @"distance",@"/Users/msi/Documents/2016/LBS_APP/LBS_APP/未选择.png",@"image0",@"/Users/msi/Documents/2016/LBS_APP/LBS_APP/已选择.png",@"image",@"YES",@"boolean",nil];
-    NSDictionary *dic5 = [[NSDictionary alloc]initWithObjectsAndKeys: @"10005",@"number",@"检查播放器5是否完好",@"task", @"5KM", @"distance",@"/Users/msi/Documents/2016/LBS_APP/LBS_APP/未选择.png",@"image0",@"/Users/msi/Documents/2016/LBS_APP/LBS_APP/已选择.png",@"image",@"NO",@"boolean",nil];
-    taskData = [[NSArray alloc]initWithObjects:dic1,dic2,dic3,dic4,dic5,nil];
+   
+//    //初始化TaskData
+//    NSDictionary *dic1 = [[NSDictionary alloc]initWithObjectsAndKeys: @"10001",@"number",@"检查播放器1是否完好",@"task", @"1KM", @"distance",@"/Users/msi/Documents/2016/LBS_APP/LBS_APP/未选择.png",@"image0",@"/Users/msi/Documents/2016/LBS_APP/LBS_APP/已选择.png",@"image",@"YES",@"boolean",nil];
+//    NSDictionary *dic2 = [[NSDictionary alloc]initWithObjectsAndKeys: @"10002",@"number",@"检查播放器2是否完好",@"task", @"2KM", @"distance",@"/Users/msi/Documents/2016/LBS_APP/LBS_APP/未选择.png",@"image0",@"/Users/msi/Documents/2016/LBS_APP/LBS_APP/已选择.png",@"image",@"YES",@"boolean",nil];
+//    NSDictionary *dic3 = [[NSDictionary alloc]initWithObjectsAndKeys: @"10003",@"number",@"检查播放器3是否完好",@"task", @"3KM", @"distance",@"/Users/msi/Documents/2016/LBS_APP/LBS_APP/未选择.png",@"image0",@"/Users/msi/Documents/2016/LBS_APP/LBS_APP/已选择.png",@"image",@"YES",@"boolean",nil];
+//    NSDictionary *dic4 = [[NSDictionary alloc]initWithObjectsAndKeys: @"10004",@"number",@"检查播放器4是否完好",@"task", @"4KM", @"distance",@"/Users/msi/Documents/2016/LBS_APP/LBS_APP/未选择.png",@"image0",@"/Users/msi/Documents/2016/LBS_APP/LBS_APP/已选择.png",@"image",@"YES",@"boolean",nil];
+//    NSDictionary *dic5 = [[NSDictionary alloc]initWithObjectsAndKeys: @"10005",@"number",@"检查播放器5是否完好",@"task", @"5KM", @"distance",@"/Users/msi/Documents/2016/LBS_APP/LBS_APP/未选择.png",@"image0",@"/Users/msi/Documents/2016/LBS_APP/LBS_APP/已选择.png",@"image",@"NO",@"boolean",nil];
+//    _taskData = [[NSArray alloc]initWithObjects:dic1,dic2,dic3,dic4,dic5,nil];
+    
     
     //读取taskDetails.plist
-    plistPath = [[NSBundle mainBundle]pathForResource:@"taskDetails" ofType:@"plist"];
-    //dataArray = [[NSArray alloc]initWithContentsOfFile:plistPath];
-    NSDictionary *data = [NSDictionary dictionaryWithContentsOfFile:plistPath];
-    //NSLog(@"data is %@",data);
-    dataArray = [data objectForKey:@"10001"];
-    //NSLog(@"dataArray is %@",dataArray);
-    
+    _plistPath = [[NSBundle mainBundle]pathForResource:@"taskDetails" ofType:@"plist"];
+    _data = [NSDictionary dictionaryWithContentsOfFile:_plistPath];
+    //NSLog(@"_data =  %@",_data);
 }
 
 //每个分区的行数
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    //return section == 1?[taskData count]:2;
-    return [taskData count];
+    return _data.allKeys.count-1;
 }
 
 //表的分区数
@@ -86,27 +88,35 @@
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     UITableViewCell *cell;
-    
+    //调用customCellWithOutXib方法
     cell = [self customCellWithOutXib:tableView withIndexPath:indexPath];
     
     return cell;
 }
-#pragma mark -- sendRowValuedelegate
--(void)rowValue:(NSInteger *)rowValue{
-    rowValue = &(row)+1;
-    NSLog(@"rowValue is %ld",(long)rowValue);
-}
+
 
 #pragma mark -- 页面跳转
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{   //跳转到storyboard页面
+{
+     //rowValue是点击的哪行
+    _row = [indexPath row];
+    NSLog(@"YOU clicked row: %ld",(long)_row+1);
+    
+    //强制转型
+    row1 = [[NSNumber numberWithInteger:_row+10000]stringValue];
+    
+   //获取任务编号
+    NSDictionary *dic1 = [_data objectForKey:row1];
+    NSString *taskNumber = [dic1 objectForKey:@"number"];
+    
+    //使用单例
+    SingleRowValue *value = [SingleRowValue shareData];
+    value.rowValue = taskNumber;
+    
+    //跳转到storyboard页面
     UIStoryboard *story = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
     UIViewController *view= [story instantiateViewControllerWithIdentifier:@"TaskDetailsViewController"];
     [self.navigationController pushViewController:view animated:YES];
-    
-    //rowValue是点击的哪行
-    row = [indexPath row];
-    NSLog(@"YOU CLICL %ld",row+1);
 
 }
 
@@ -169,9 +179,13 @@
     //获得行数
     NSUInteger row = [indexPath row];
     
-    //取得相应行数的数据（NSDictionary类型，包括姓名、班级、学号、图片名称）
-    NSDictionary *dic = [taskData objectAtIndex:row];
+    //获取字典
+    NSString *a = [[NSNumber numberWithInteger:row+10000]stringValue];
     
+    NSDictionary *dic =[_data objectForKey:a];
+    NSDictionary *img = [_data objectForKey:@"selected"];
+    //NSLog(@"dic = %@",dic);
+    //NSLog(@"img = %@",img);
     
     //设置number
     UILabel *number = (UILabel *)[cell.contentView viewWithTag:numberTag];
@@ -190,9 +204,9 @@
     NSString *check = [[NSString alloc]init];
     check = [dic objectForKey:@"boolean"];
     if ([check isEqualToString:@"YES"]) {
-        imageView.image = [UIImage imageNamed:[dic objectForKey:@"image0"]];
+        imageView.image = [UIImage imageNamed:[img objectForKey:@"image1"]];
     }else{
-        imageView.image = [UIImage imageNamed:[dic objectForKey:@"image"]];
+        imageView.image = [UIImage imageNamed:[img objectForKey:@"image0"]];
     }
     
     

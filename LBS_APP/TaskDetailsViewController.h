@@ -14,5 +14,10 @@
 @property (strong, nonatomic) IBOutlet UIView *scrollBG;
 @property (strong, nonatomic) IBOutlet UIView *taskRpBG;
 
+@property (strong, nonatomic) IBOutlet UILabel *numberLabel;//编号
+@property (strong, nonatomic) IBOutlet UILabel *distanceLabel;//距离
+@property (strong, nonatomic) IBOutlet UILabel *taskDetailsLabel;//任务详情
+@property (strong, nonatomic) IBOutlet UILabel *taskNameLabel;//任务名称
+@property (strong, nonatomic) IBOutlet UILabel *taskStatusLabel;//任务状态
 
 @end

@@ -9,6 +9,7 @@
 #import "MainViewController.h"
 #import "PersonConterViewController.h"
 #import "TaskViewController.h"
+#import "LoginViewController.h"
 #import <BaiduMapAPI_Base/BMKBaseComponent.h>//引入base相关所有的头文件
 #import <BaiduMapAPI_Map/BMKMapComponent.h>//引入地图功能所有的头文件
 #import <BaiduMapAPI_Search/BMKSearchComponent.h>//引入检索功能所有的头文件
@@ -120,7 +121,7 @@ UIImageView *buttonView;
     UIImageView *photo = [[UIImageView alloc]initWithFrame:CGRectMake(20, 35, 80, 80)];
     photo.image = [UIImage imageNamed:@"/Users/msi/Documents/2016/LBS_APP/LBS_APP/personCenter/头像.jpg"];
     CALayer *layer = [photo layer];
-    photo.layer.masksToBounds = YES;//告诉layer讲位于他之下的layer都遮盖住
+    photo.layer.masksToBounds = YES;//告诉layer将位于他之下的layer都遮盖住
     photo.layer.cornerRadius = photo.bounds.size.width*0.5;//设置layer的圆角，刚好是自身宽度的一半，这样就成了圆形
     photo.layer.borderWidth = 5.0;
     photo.layer.borderColor = [[UIColor whiteColor]CGColor];
@@ -142,8 +143,20 @@ UIImageView *buttonView;
     exitBtn.backgroundColor = [UIColor colorWithRed:50 green:0 blue:0 alpha:0.5];
     [exitBtn setTitle:@"退出登录" forState:UIControlStateNormal];
     [scrollView addSubview:exitBtn];
-    
-    
+    [exitBtn addTarget:self action:@selector(logout) forControlEvents:UIControlEventTouchUpInside];
+}
+-(void)logout{//注销按钮点击事件
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"是否注销" message:@"点击确认后将退出当前账户" preferredStyle:UIAlertControllerStyleActionSheet];
+    [alert addAction:[UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil]];
+    [alert addAction:[UIAlertAction actionWithTitle:@"确认" style:UIAlertActionStyleDestructive handler:^(UIAlertAction *_Nonnull action){
+        
+        UIStoryboard *story = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
+        UIViewController *view= [story instantiateViewControllerWithIdentifier:@"LoginViewController"];
+        [self.navigationController pushViewController:view animated:YES];
+        
+    }]];
+    //显示当前前提
+    [self presentViewController:alert animated:YES completion:NULL];
     
 }
 -(void)buttonView

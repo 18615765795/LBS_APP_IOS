@@ -381,7 +381,52 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Meo-h3-WXs" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="103" y="1147"/>
+            <point key="canvasLocation" x="-361" y="1137"/>
+        </scene>
+        <!--Person Information View Controller-->
+        <scene sceneID="ZMJ-po-mmX">
+            <objects>
+                <viewController storyboardIdentifier="PersonInformationViewController" id="8EI-ZP-8hK" customClass="PersonInformationViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="NK3-3e-cE3"/>
+                        <viewControllerLayoutGuide type="bottom" id="8al-Gb-8vb"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="lzq-E4-PXG">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="80" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="J5g-IY-v0r">
+                                <rect key="frame" x="20" y="100" width="374" height="479"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <label key="tableHeaderView" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="个人信息" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="2Ub-iD-P81">
+                                    <rect key="frame" x="0.0" y="0.0" width="374" height="25"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <sections/>
+                                <connections>
+                                    <outlet property="dataSource" destination="8EI-ZP-8hK" id="qRV-01-KyB"/>
+                                    <outlet property="delegate" destination="8EI-ZP-8hK" id="mqA-gF-BB6"/>
+                                </connections>
+                            </tableView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="man-6B-n4h">
+                                <rect key="frame" x="30" y="30" width="30" height="30"/>
+                                <state key="normal" title="Button" image="首页.png"/>
+                                <connections>
+                                    <action selector="backAction:" destination="8EI-ZP-8hK" eventType="touchUpInside" id="UMk-w2-CwF"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="5D2-Ae-0la"/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ALK-sv-MvW" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="230" y="1081"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="PbV-DM-AW0">
@@ -414,5 +459,6 @@
         <image name="头像1.jpg" width="311" height="311"/>
         <image name="相机.png" width="30" height="30"/>
         <image name="锁定.png" width="30" height="30"/>
+        <image name="首页.png" width="128" height="128"/>
     </resources>
 </document>

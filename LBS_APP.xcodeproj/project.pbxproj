@@ -14,6 +14,7 @@
 		6E1D7A981CD0652500161B18 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E1D7A951CD0652500161B18 /* MBProgressHUD.m */; };
 		6E1D7A9C1CD06BF200161B18 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6E1D7A9A1CD06BF200161B18 /* Main.storyboard */; };
 		6E1D7A9E1CD0DA9100161B18 /* 头像1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 6E1D7A9D1CD0DA9100161B18 /* 头像1.jpg */; };
+		6E1D7AA11CDA05A000161B18 /* PersonInformationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E1D7AA01CDA05A000161B18 /* PersonInformationViewController.m */; };
 		6E2C0B2E1CA95EA1009F5EC7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E2C0B2D1CA95EA1009F5EC7 /* main.m */; };
 		6E2C0B311CA95EA1009F5EC7 /* AppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = 6E2C0B301CA95EA1009F5EC7 /* AppDelegate.mm */; };
 		6E2C0B3C1CA95EA1009F5EC7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6E2C0B3A1CA95EA1009F5EC7 /* LaunchScreen.storyboard */; };
@@ -100,6 +101,8 @@
 		6E1D7A951CD0652500161B18 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
 		6E1D7A9B1CD06BF200161B18 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		6E1D7A9D1CD0DA9100161B18 /* 头像1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "头像1.jpg"; sourceTree = "<group>"; };
+		6E1D7A9F1CDA05A000161B18 /* PersonInformationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonInformationViewController.h; sourceTree = "<group>"; };
+		6E1D7AA01CDA05A000161B18 /* PersonInformationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonInformationViewController.m; sourceTree = "<group>"; };
 		6E2C0B291CA95EA1009F5EC7 /* LBS_APP.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LBS_APP.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6E2C0B2D1CA95EA1009F5EC7 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		6E2C0B2F1CA95EA1009F5EC7 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -301,6 +304,8 @@
 				6E2C0BB31CAA46FF009F5EC7 /* TaskViewController.m */,
 				6E6B96D01CC2115D00DB69F2 /* TaskDetailsViewController.h */,
 				6E6B96D11CC2115D00DB69F2 /* TaskDetailsViewController.m */,
+				6E1D7A9F1CDA05A000161B18 /* PersonInformationViewController.h */,
+				6E1D7AA01CDA05A000161B18 /* PersonInformationViewController.m */,
 			);
 			name = ViewController;
 			sourceTree = "<group>";
@@ -587,6 +592,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6E1D7AA11CDA05A000161B18 /* PersonInformationViewController.m in Sources */,
 				6E2C0B7F1CA96182009F5EC7 /* PersonConterViewController.m in Sources */,
 				6E1D7A961CD0652500161B18 /* MBProgressHUD+NJ.m in Sources */,
 				6E2C0B311CA95EA1009F5EC7 /* AppDelegate.mm in Sources */,

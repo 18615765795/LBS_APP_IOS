@@ -10,6 +10,7 @@
 #import "PersonConterViewController.h"
 #import "TaskViewController.h"
 #import "LoginViewController.h"
+#import "PersonInformationViewController.h"
 #import <BaiduMapAPI_Base/BMKBaseComponent.h>//引入base相关所有的头文件
 #import <BaiduMapAPI_Map/BMKMapComponent.h>//引入地图功能所有的头文件
 #import <BaiduMapAPI_Search/BMKSearchComponent.h>//引入检索功能所有的头文件
@@ -229,12 +230,21 @@ UIImageView *buttonView;
     NSString *rowValue = [self.listData objectAtIndex:row];
     NSString *message = [[NSString alloc]initWithFormat:@"You selected%@",rowValue];
     //    弹出警告信息
-    UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"提示"
+    if(row == 0){
+        UIStoryboard *story=[UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
+        PersonInformationViewController *personInformation = [story instantiateViewControllerWithIdentifier:@"PersonInformationViewController"];
+        [self.navigationController pushViewController:personInformation animated:YES];
+        
+    }else{
+        UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"提示"
                                                    message:message
                                                   delegate:self
                                          cancelButtonTitle:@"OK"
                                          otherButtonTitles: nil];
-    [alert show];
+        [alert show];
+    }
+    
+    
 }
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {

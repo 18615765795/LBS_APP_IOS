@@ -433,6 +433,7 @@
             <objects>
                 <navigationController storyboardIdentifier="NavigationController" automaticallyAdjustsScrollViewInsets="NO" id="ec6-Cm-2YW" sceneMemberID="viewController">
                     <toolbarItems/>
+                    <navigationItem key="navigationItem" id="5gU-YQ-fdx"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="ak1-aU-rud">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -445,7 +446,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hCb-6R-H37" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-349" y="309"/>
+            <point key="canvasLocation" x="-371" y="179"/>
         </scene>
     </scenes>
     <resources>

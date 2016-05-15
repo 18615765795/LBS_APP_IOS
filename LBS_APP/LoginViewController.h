@@ -7,7 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
+//#import "MainViewController.h"
+@protocol LoginViewPassValueProtocal <NSObject>
+@required
+-(void)passValue:(NSString *)value;
+@end
 
 @interface LoginViewController : UIViewController
-
+{
+    
+}
+@property (nonatomic,weak)id<LoginViewPassValueProtocal> PVdelegate;
 @end

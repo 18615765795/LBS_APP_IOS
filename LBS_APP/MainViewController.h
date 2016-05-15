@@ -7,7 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+
 @interface MainViewController : UIViewController<UITableViewDelegate,UITableViewDataSource>
+{
+    
+}
+
+@property(strong,nonatomic)UILabel *PV;
 @property(strong,nonatomic) NSArray *listData;
 @property(strong,nonatomic) NSArray *imageData;
 @property(strong,nonatomic)UITableView *tableView;

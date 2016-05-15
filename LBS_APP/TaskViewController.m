@@ -19,7 +19,7 @@
     NSInteger _row;
     NSString *row1;
 }
-
+-(void)test;
 @end
 
 @implementation TaskViewController
@@ -93,7 +93,6 @@
     
     return cell;
 }
-
 
 #pragma mark -- 页面跳转
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath

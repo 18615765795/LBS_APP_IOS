@@ -9,6 +9,7 @@
 #import "LoginViewController.h"
 #import "MBProgressHUD+NJ.h"
 #import "MainViewController.h"
+
 @interface LoginViewController ()
 @property (strong, nonatomic) IBOutlet UITextField *nameField;
 @property (strong, nonatomic) IBOutlet UITextField *pswField;
@@ -53,6 +54,14 @@
     if(![self.pswField.text isEqualToString:@"123"]){
         [MBProgressHUD showError:@"密码不正确"];
         return;
+    }
+    //设置代理
+    MainViewController *view = [[MainViewController alloc]init];
+    _PVdelegate = view;
+    
+    //传值
+    if ([_PVdelegate respondsToSelector:@selector(passValue:)]) {//如果协议响应了passValue方法
+        [_PVdelegate passValue:self.nameField.text];//通知执行协议方法
     }
     
     //显示过度动画

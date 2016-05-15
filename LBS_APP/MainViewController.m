@@ -25,7 +25,7 @@
 #define SCREEN_WIDTH ([UIScreen mainScreen].bounds.size.width)
 #define SCREEN_HEIGHT ([UIScreen mainScreen].bounds.size.height)
 
-@interface MainViewController ()
+@interface MainViewController ()<LoginViewPassValueProtocal>
 {
 UIPageControl *pageControl;  //指示当前处于第几个引导页
 UIScrollView *scrollView;     //用于存放并显示引导页
@@ -78,6 +78,13 @@ UIImageView *buttonView;
     [_mapView updateLocationData:_userLocation];
     
 }
+NSString *_passValue;
+#pragma mark -- LoginViewPassValueProtocal
+-(void)passValue:(NSString *)value
+{
+    _passValue = value;
+    //NSLog(@"_passvalue = %@",_passValue);
+}
 
 #pragma mark -- scrollView视图
 -(void)initScrollView
@@ -127,12 +134,15 @@ UIImageView *buttonView;
     photo.layer.borderWidth = 5.0;
     photo.layer.borderColor = [[UIColor whiteColor]CGColor];
     [scrollView addSubview:photo];
-//名字
-    UILabel *nameLable = [[UILabel alloc]initWithFrame:CGRectMake(120, 40, 150, 30)];
+
+    //名字
+    UILabel *nameLabel = [[UILabel alloc]initWithFrame:CGRectMake(120, 40, 150, 30)];
     //_nameArray = [NSMutableArray arrayWithObjects:@"张三", nil];
-    ///NSString *nameStr = [NSString stringWithFormat:@"%@",_nameArray];
-    nameLable.text = @"张三";
-    [scrollView addSubview:nameLable];
+    ///NSString *nameStr = [NSString stringWithFormat:@"%@",_nameArray];    
+    nameLabel.text = _passValue;
+    //NSLog(@"%@",_passValue);
+    [scrollView addSubview:nameLabel];
+    
 //电话
     UILabel *phoneLable=[[UILabel alloc]initWithFrame:CGRectMake(120, 80, 150, 30)];
     //_phoneArray = [NSMutableArray arrayWithObjects:@"186****1234", nil];
